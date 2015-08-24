@@ -1,5 +1,5 @@
-#FROM phusion/baseimage:0.9.17
-FROM ubuntu:14.04
+FROM phusion/baseimage:0.9.17
+#FROM ubuntu:14.04
 
 MAINTAINER Brian Prodoehl <bprodoehl@connectify.me>
 
@@ -46,13 +46,17 @@ RUN mkdir -p /var/log/sensu-api /var/log/sensu-server
 ADD conf/check_memory.json /etc/sensu/conf.d/check_memory.json
 ADD conf/default_handler.json /etc/sensu/conf.d/default_handler.json
 
-### Enable Sensu
-#RUN mkdir /etc/service/sensu-api
-#ADD runit/sensu-api.sh /etc/service/sensu-api/run
-#RUN mkdir /etc/service/sensu-server
-#ADD runit/sensu-server.sh /etc/service/sensu-server/run
+### Configure Runit
+RUN mkdir /etc/service/rabbitmq
+ADD runit/rabbitmq.sh /etc/service/rabbitmq/run
+RUN mkdir /etc/service/redis
+ADD runit/redis.sh /etc/service/redis/run
+RUN mkdir /etc/service/sensu-api
+ADD runit/sensu-api.sh /etc/service/sensu-api/run
+RUN mkdir /etc/service/sensu-server
+ADD runit/sensu-server.sh /etc/service/sensu-server/run
 
-ADD conf/supervisord.conf /etc/supervisord.conf
+#ADD conf/supervisord.conf /etc/supervisord.conf
 
 EXPOSE 3000 4567 5671 15672
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
