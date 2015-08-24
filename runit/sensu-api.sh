@@ -1,6 +1,8 @@
 #!/bin/sh
-
 set -eu
+
+sv start rabbitmq || exit 1
+sleep 5.0
 
 RUNDIR=/var/run/sensu-api
 PIDFILE=$RUNDIR/sensu-api.pid

@@ -3,6 +3,8 @@ FROM phusion/baseimage:0.9.17
 
 MAINTAINER Brian Prodoehl <bprodoehl@connectify.me>
 
+ENV HOME /root
+
 ### Update the base image
 RUN apt-get update && apt-get dist-upgrade -qy
 RUN apt-get install -y curl wget supervisor
@@ -23,6 +25,8 @@ RUN apt-get -y install rabbitmq-server
 RUN mkdir -p /var/run/rabbitmq /var/log/rabbitmq
 RUN chown rabbitmq:rabbitmq /var/run/rabbitmq
 RUN chown rabbitmq:rabbitmq /var/log/rabbitmq
+ADD conf/rabbitmq.config /etc/rabbitmq/rabbitmq.config
+ADD conf/rabbitmq-env.conf /etc/rabbitmq/rabbitmq-env.conf
 
 ### Install Redis
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C7917B12
@@ -46,6 +50,11 @@ RUN mkdir -p /var/log/sensu-api /var/log/sensu-server
 ADD conf/check_memory.json /etc/sensu/conf.d/check_memory.json
 ADD conf/default_handler.json /etc/sensu/conf.d/default_handler.json
 
+### Add scripts to generate TLS certs
+RUN mkdir /root/sensu_certs
+ADD files/openssl.cnf /root/sensu_certs/openssl.cnf
+ADD files/ssl_certs.sh /root/sensu_certs/ssl_certs.sh
+
 ### Configure Runit
 RUN mkdir /etc/service/rabbitmq
 ADD runit/rabbitmq.sh /etc/service/rabbitmq/run
@@ -55,6 +64,7 @@ RUN mkdir /etc/service/sensu-api
 ADD runit/sensu-api.sh /etc/service/sensu-api/run
 RUN mkdir /etc/service/sensu-server
 ADD runit/sensu-server.sh /etc/service/sensu-server/run
+ADD runit/generate-certs.sh /etc/my_init.d/010-generate-certs.sh
 
 #ADD conf/supervisord.conf /etc/supervisord.conf
 

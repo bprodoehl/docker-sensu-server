@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -eu
 
 RUNDIR=/var/run/redis
 PIDFILE=$RUNDIR/redis.pid
