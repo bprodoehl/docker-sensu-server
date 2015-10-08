@@ -50,6 +50,10 @@ RUN mkdir -p /var/log/sensu-api /var/log/sensu-server
 ADD conf/check_memory.json /etc/sensu/conf.d/check_memory.json
 ADD conf/default_handler.json /etc/sensu/conf.d/default_handler.json
 
+### Configure Sensu client
+ADD conf/client-config.json /etc/sensu/conf.d/config.json
+ADD conf/check-memory.sh /etc/sensu/plugins/check-memory.sh
+
 ### Add scripts to generate TLS certs
 RUN mkdir /root/sensu_certs
 ADD files/openssl.cnf /root/sensu_certs/openssl.cnf
@@ -62,11 +66,10 @@ RUN mkdir /etc/service/redis
 ADD runit/redis.sh /etc/service/redis/run
 RUN mkdir /etc/service/sensu-api
 ADD runit/sensu-api.sh /etc/service/sensu-api/run
+RUN mkdir /etc/service/sensu-client
+ADD runit/sensu-client.sh /etc/service/sensu-client/run
 RUN mkdir /etc/service/sensu-server
 ADD runit/sensu-server.sh /etc/service/sensu-server/run
 ADD runit/generate-certs.sh /etc/my_init.d/010-generate-certs.sh
 
-#ADD conf/supervisord.conf /etc/supervisord.conf
-
-EXPOSE 3000 4567 5671 15672
-#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+EXPOSE 4567 5671 15672
