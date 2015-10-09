@@ -1,15 +1,15 @@
 {
   "rabbitmq": {
     "host": "localhost",
-    "vhost": "/sensu",
-    "user": "sensu",
-    "password": "secret"
+    "vhost": "%%AMQP_VHOST%%",
+    "user": "%%AMQP_USER%%",
+    "password": "%%AMQP_PASSWORD%%"
   },
   "redis": {
     "host": "localhost"
   },
   "api": {
     "host": "localhost",
-    "port": 4567
+    "port": %%SENSU_API_PORT%%
   }
 }

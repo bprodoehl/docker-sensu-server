@@ -1,5 +1,4 @@
 FROM phusion/baseimage:0.9.17
-#FROM ubuntu:14.04
 
 MAINTAINER Brian Prodoehl <bprodoehl@connectify.me>
 
@@ -43,7 +42,7 @@ RUN apt-get update
 RUN apt-get install -y sensu
 
 ### Configure Sensu
-ADD conf/config.json /etc/sensu/config.json
+ADD conf/config.json.template /etc/sensu/config.json.template
 RUN mkdir -p /var/log/sensu-api /var/log/sensu-server
 
 ### Configure a Check
@@ -72,4 +71,4 @@ RUN mkdir /etc/service/sensu-server
 ADD runit/sensu-server.sh /etc/service/sensu-server/run
 ADD runit/generate-certs.sh /etc/my_init.d/010-generate-certs.sh
 
-EXPOSE 4567 5671 15672
+EXPOSE 80 4567 5671 15672
