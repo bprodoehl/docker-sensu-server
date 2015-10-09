@@ -23,7 +23,7 @@ A slightly more complete set of commands:
 docker run -d --name sensu-server \
            -p 80:80 -p 5671:5671 \
            --hostname sensu-server \
-           --env AMQP_VHOST=/sensu2 \
+           --env AMQP_VHOST=/sensu \
            --env AMQP_USER=supersecretuser \
            --env AMQP_PASSWORD=MyReallyL0ngP4ssw0rd \
            --env SENSU_API_PORT=80 \

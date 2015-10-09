@@ -6,7 +6,7 @@ ENV HOME /root
 
 ### Update the base image
 RUN apt-get update && apt-get dist-upgrade -qy
-RUN apt-get install -y curl wget supervisor
+RUN apt-get install -y curl wget
 
 ### Install RabbitMQ
 ###### Step #1: Install Erlang
