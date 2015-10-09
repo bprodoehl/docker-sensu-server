@@ -10,6 +10,8 @@
   },
   "api": {
     "host": "localhost",
-    "port": %%SENSU_API_PORT%%
+    "port": %%SENSU_API_PORT%%,
+    "user": "%%SENSU_API_USER%%",
+    "password": "%%SENSU_API_PASSWORD%%",
   }
 }
