@@ -5,17 +5,17 @@
       "cert_chain_file": "/etc/sensu/ssl/client_cert.pem"
     },
     "port": 5671,
-    "host": "%%SENSU_HOST%%",
-    "user": "%%SENSU_USER%%",
-     "password": "%%SENSU_PASSWORD%%",
-     "vhost": "%%SENSU_VHOST%%"
+    "host": "%%AMQP_HOST%%",
+    "user": "%%AMQP_USER%%",
+    "password": "%%AMQP_PASSWORD%%",
+    "vhost": "%%AMQP_VHOST%%"
    },
   "redis": {
     "host": "127.0.0.1",
     "port": 6379
   },
   "api": {
-    "host": "127.0.01",
+    "host": "127.0.0.1",
     "port": 4567
   },
   "handlers": {
@@ -47,5 +47,4 @@
         "test"
      ]
    }
-
 } 

@@ -71,4 +71,4 @@ RUN mkdir /etc/service/sensu-server
 ADD runit/sensu-server.sh /etc/service/sensu-server/run
 #ADD runit/generate-certs.sh /etc/my_init.d/010-generate-certs.sh
 
-EXPOSE 80  5671 15672
+EXPOSE 80 5671 15672
