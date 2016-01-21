@@ -21,7 +21,7 @@ if [ -z ${SENSU_API_PASSWORD+x} ]; then SENSU_API_PASSWORD=password; else SENSU_
 set -e
 
 # use \001 (start-of-header) as the delimiter, as the password can include basically anything
-cat conf/config.json.template | \
+cat /etc/sensu/config.json.template | \
     sed s$'\001''%%AMQP_HOST%%'$'\001'$AMQP_HOST$'\001''g' | \
     sed s$'\001''%%AMQP_VHOST%%'$'\001'$AMQP_VHOST$'\001''g' | \
     sed s$'\001''%%AMQP_USER%%'$'\001'$AMQP_USER$'\001''g' | \
