@@ -37,7 +37,7 @@
         "test"
       ],
       "interval": 60
-    },
+    }
   },
   "client": {
     "name": "%%SENSU_HOST%%",
