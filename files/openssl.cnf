@@ -36,7 +36,7 @@ distinguished_name = root_ca_distinguished_name
 x509_extensions = root_ca_extensions
 
 [ root_ca_distinguished_name ]
-commonName = sensu
+commonName = sensu-server
 
 [ root_ca_extensions ]
 basicConstraints = CA:true

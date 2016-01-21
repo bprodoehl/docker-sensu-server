@@ -1,17 +1,51 @@
 {
   "rabbitmq": {
-    "host": "localhost",
-    "vhost": "%%AMQP_VHOST%%",
-    "user": "%%AMQP_USER%%",
-    "password": "%%AMQP_PASSWORD%%"
-  },
+    "ssl": {
+      "private_key_file": "/etc/sensu/ssl/client_key.pem",
+      "cert_chain_file": "/etc/sensu/ssl/client_cert.pem"
+    },
+    "port": 5671,
+    "host": "%%SENSU_HOST%%",
+    "user": "%%SENSU_USER%%",
+     "password": "%%SENSU_PASSWORD%%",
+     "vhost": "%%SENSU_VHOST%%"
+   },
   "redis": {
-    "host": "localhost"
+    "host": "127.0.0.1",
+    "port": 6379
   },
   "api": {
-    "host": "localhost",
-    "port": %%SENSU_API_PORT%%,
-    "user": "%%SENSU_API_USER%%",
-    "password": "%%SENSU_API_PASSWORD%%",
-  }
-}
+    "host": "127.0.01",
+    "port": 4567
+  },
+  "handlers": {
+    "default": {
+      "type": "set",
+      "handlers": [
+        "stdout"
+      ]
+    },
+    "stdout": {
+      "type": "pipe",
+      "command": "cat"
+    }
+  },
+  "checks": {
+    "test": {
+      "command": "echo -n OK",
+      "subscribers": [
+        "test"
+      ],
+      "interval": 60
+    },
+    },
+    "client": {
+     "name": "%%SENSU_HOST%%",
+     "address": "127.0.0.1",
+     "subscriptions": [
+       "production",
+        "test"
+     ]
+   }
+
+} 
