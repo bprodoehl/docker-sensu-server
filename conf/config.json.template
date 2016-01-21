@@ -38,13 +38,13 @@
       ],
       "interval": 60
     },
-    },
-    "client": {
-     "name": "%%SENSU_HOST%%",
-     "address": "127.0.0.1",
-     "subscriptions": [
-       "production",
-       "test"
-     ]
-   }
+  },
+  "client": {
+    "name": "%%SENSU_HOST%%",
+    "address": "127.0.0.1",
+    "subscriptions": [
+      "production",
+      "test"
+    ]
+  }
 }
