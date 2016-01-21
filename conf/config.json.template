@@ -16,7 +16,7 @@
   },
   "api": {
     "host": "127.0.0.1",
-    "port": 4567
+    "port": %%SENSU_API_PORT%%
   },
   "handlers": {
     "default": {
@@ -44,7 +44,7 @@
      "address": "127.0.0.1",
      "subscriptions": [
        "production",
-        "test"
+       "test"
      ]
    }
-} 
+}

@@ -5,12 +5,15 @@ This is a work-in-progress.
 
 ### Environment variables
 
+ * AMQP_HOST - required, no default
  * AMQP_VHOST - defaults to /sensu
  * AMQP_USER - defaults to sensu
  * AMQP_PASSWORD - defaults to secret
  * SENSU_API_PORT - defaults to 4567
  * SENSU_API_USER - defaults to admin
  * SENSU_API_PASSWORD - defaults to secret
+ * SENSU_HOST - required, no default
+ * SENSU_VHOST - defaults to /sensu
 
 ### Getting Started
 ```
@@ -21,7 +24,7 @@ docker run -d --name uchiwa -p 3000:3000 -v /etc/uchiwa:/config --hostname uchiw
 A slightly more complete set of commands:
 ```
 docker run -d --name sensu-server \
-           -p 80:80 -p 5671:5671 \
+           -p 5671:5671 \
            --hostname sensu-server \
            --env AMQP_VHOST=/sensu \
            --env AMQP_USER=supersecretuser \
